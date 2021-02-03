@@ -55,6 +55,7 @@ public:
     RendererFrontend& rendererFrontend;
 
     Transform transform;
+    LatLngBounds unwrappedLatLngBounds(const Transform& transform_) const;
 
     const MapMode mode;
     const float pixelRatio;

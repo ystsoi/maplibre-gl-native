@@ -182,4 +182,22 @@ void Map::Impl::onRemoveUnusedStyleImages(const std::vector<std::string>& unused
     }
 }
 
+LatLngBounds Map::Impl::unwrappedLatLngBounds(const Transform& transform_) const {
+    Size size = transform_.getState().getSize();
+    LatLng nw = transform_.screenCoordinateToLatLng({});
+    LatLng se = transform_.screenCoordinateToLatLng({double(size.width), double(size.height)});
+    LatLng ne = transform_.screenCoordinateToLatLng({double(size.width), 0.0});
+    LatLng sw = transform_.screenCoordinateToLatLng({0.0, double(size.height)});
+    LatLng center = transform_.screenCoordinateToLatLng({double(size.width) / 2, double(size.height) / 2});
+    nw.unwrapForShortestPath(center);
+    se.unwrapForShortestPath(center);
+    ne.unwrapForShortestPath(center);
+    sw.unwrapForShortestPath(center);
+    LatLngBounds bounds = LatLngBounds::hull(nw, se);
+    bounds.extend(ne);
+    bounds.extend(sw);
+    bounds.extend(center);
+    return bounds;
+}
+
 } // namespace mbgl

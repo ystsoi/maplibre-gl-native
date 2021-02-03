@@ -175,6 +175,18 @@ private:
     }
 };
 
+class LatLngBoundsZoom {
+public:
+    /// Construct from existing bound and zoom level
+    LatLngBoundsZoom(const LatLngBounds& bounds_, const double zoom_) : bounds(bounds_), zoom(zoom_) {}
+
+    LatLngBounds getBounds() const {return bounds;}
+    double getZoom() const {return zoom;}
+private:
+    LatLngBounds bounds;
+    double zoom;
+};
+
 // Determines the orientation of the map.
 enum class NorthOrientation : uint8_t {
     Upwards, // Default

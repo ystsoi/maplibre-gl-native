@@ -425,6 +425,11 @@ jni::Local<jni::Object<CameraPosition>> NativeMapView::getCameraForLatLngBounds(
     return CameraPosition::New(env, map->cameraForLatLngBounds(mbgl::android::LatLngBounds::getLatLngBounds(env, jBounds), padding, bearing, tilt), pixelRatio);
 }
 
+jni::Local<jni::Object<LatLngBoundsZoom>> getLatLngBoundsZoomFromCamera(jni::JNIEnv&, const jni::Object<mbgl::android::CameraOptions>& cameraOptions) {
+    auto retVal = map->latLngBoundsZoomForCameraUnwrapped(cameraOptions);
+    return retVal;
+}
+
 jni::Local<jni::Object<CameraPosition>> NativeMapView::getCameraForGeometry(jni::JNIEnv& env, const jni::Object<geojson::Geometry>& jGeometry, double top, double left, double bottom, double right, double bearing, double tilt) {
     auto geometry = geojson::Geometry::convert(env, jGeometry);
     mbgl::EdgeInsets padding = {top, left, bottom, right};
@@ -1183,6 +1188,7 @@ void NativeMapView::registerNative(jni::JNIEnv& env) {
         METHOD(&NativeMapView::getLatLng, "nativeGetLatLng"),
         METHOD(&NativeMapView::setLatLng, "nativeSetLatLng"),
         METHOD(&NativeMapView::getCameraForLatLngBounds, "nativeGetCameraForLatLngBounds"),
+        METHOD(&NativeMapView::getLatLngBoundsZoomFromCamera, "nativeGetLatLngBoundsZoomFromCamera"),
         METHOD(&NativeMapView::getCameraForGeometry, "nativeGetCameraForGeometry"),
         METHOD(&NativeMapView::setReachability, "nativeSetReachability"),
         METHOD(&NativeMapView::resetPosition, "nativeResetPosition"),

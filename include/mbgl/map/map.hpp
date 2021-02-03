@@ -82,6 +82,7 @@ public:
                                     const optional<double>& pitch = {}) const;
     LatLngBounds latLngBoundsForCamera(const CameraOptions&) const;
     LatLngBounds latLngBoundsForCameraUnwrapped(const CameraOptions&) const;
+    LatLngBoundsZoom latLngBoundsZoomForCameraUnwrapped(const CameraOptions&) const;
 
     /// @name Bounds
     /// @{

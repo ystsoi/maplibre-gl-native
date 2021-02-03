@@ -103,6 +103,8 @@ public:
 
     jni::Local<jni::Object<CameraPosition>> getCameraForLatLngBounds(jni::JNIEnv&, const jni::Object<mbgl::android::LatLngBounds>&, double top, double left, double bottom, double right, double bearing, double tilt);
 
+    jni::Local<jni::Object<LatLngBoundsZoom>> getLatLngBoundsZoomFromCamera(jni::JNIEnv&, const jni::Object<mbgl::android::CameraOptions>&);
+
     jni::Local<jni::Object<CameraPosition>> getCameraForGeometry(jni::JNIEnv&, const jni::Object<geojson::Geometry>&, double top, double left, double bottom, double right, double bearing, double tilt);
 
     void setReachability(jni::JNIEnv&, jni::jboolean);
