@@ -69,6 +69,8 @@ add_library(mapbox-gl SHARED
             ${PROJECT_SOURCE_DIR}/geometry/lat_lng.hpp
             ${PROJECT_SOURCE_DIR}/geometry/lat_lng_bounds.cpp
             ${PROJECT_SOURCE_DIR}/geometry/lat_lng_bounds.hpp
+            ${PROJECT_SOURCE_DIR}/geometry/lat_lng_bounds_zoom.cpp
+            ${PROJECT_SOURCE_DIR}/geometry/lat_lng_bounds_zoom.hpp            
             ${PROJECT_SOURCE_DIR}/geometry/lat_lng_quad.cpp
             ${PROJECT_SOURCE_DIR}/geometry/lat_lng_quad.hpp
             ${PROJECT_SOURCE_DIR}/geometry/projected_meters.cpp

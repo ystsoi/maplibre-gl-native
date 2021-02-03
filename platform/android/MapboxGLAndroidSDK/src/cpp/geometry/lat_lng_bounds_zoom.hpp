@@ -7,20 +7,20 @@
 #include <jni/jni.hpp>
 
 namespace mbgl {
-    namespace android {
+namespace android {
 
-        class LatLngBoundsZoom : private mbgl::util::noncopyable {
-        public:
+    class LatLngBoundsZoom : private mbgl::util::noncopyable {
+    public:
 
-            static constexpr auto Name() { return "com/mapbox/mapboxsdk/geometry/LatLngBoundsZoom"; };
+        static constexpr auto Name() { return "com/mapbox/mapboxsdk/geometry/LatLngBoundsZoom"; };
 
-            static jni::Local<jni::Object<LatLngBoundsZoom>> New(jni::JNIEnv&, mbgl::LatLngBoundsZoom);
+        static jni::Local<jni::Object<LatLngBoundsZoom>> New(jni::JNIEnv&, mbgl::LatLngBoundsZoom);
 
-            static mbgl::LatLngBoundsZoom getLatLngBoundsZoom(jni::JNIEnv&, const jni::Object<LatLngBoundsZoom>&);
+        static mbgl::LatLngBoundsZoom getLatLngBoundsZoom(jni::JNIEnv&, const jni::Object<LatLngBoundsZoom>&);
 
-            static void registerNative(jni::JNIEnv&);
-        };
+        static void registerNative(jni::JNIEnv&);
+    };
 
 
-    } // namespace android
+} // namespace android
 } // namespace mbgl

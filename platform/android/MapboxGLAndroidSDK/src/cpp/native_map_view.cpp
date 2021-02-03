@@ -46,6 +46,7 @@
 #include "bitmap_factory.hpp"
 #include "file_source.hpp"
 #include "geometry/lat_lng_bounds.hpp"
+#include "geometry/lat_lng_bounds_zoom.hpp"
 #include "java/util.hpp"
 #include "jni.hpp"
 #include "map/camera_position.hpp"
@@ -425,8 +426,10 @@ jni::Local<jni::Object<CameraPosition>> NativeMapView::getCameraForLatLngBounds(
     return CameraPosition::New(env, map->cameraForLatLngBounds(mbgl::android::LatLngBounds::getLatLngBounds(env, jBounds), padding, bearing, tilt), pixelRatio);
 }
 
-jni::Local<jni::Object<LatLngBoundsZoom>> getLatLngBoundsZoomFromCamera(jni::JNIEnv&, const jni::Object<mbgl::android::CameraOptions>& cameraOptions) {
-    auto retVal = map->latLngBoundsZoomForCameraUnwrapped(cameraOptions);
+jni::Local<jni::Object<mbgl::android::LatLngBoundsZoom>> NativeMapView::getLatLngBoundsZoomFromCamera(jni::JNIEnv& env, const jni::Object<CameraPosition>& cameraPosition) {
+    auto cameraOptions = CameraPosition::getCameraOptions(env, cameraPosition, pixelRatio);
+    auto latLngBoundsZoom = map->latLngBoundsZoomForCameraUnwrapped(cameraOptions);
+    auto retVal = LatLngBoundsZoom::New(env, latLngBoundsZoom);
     return retVal;
 }
 

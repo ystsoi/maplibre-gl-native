@@ -19,6 +19,7 @@
 #include "style/layers/layer_manager.hpp"
 #include "style/sources/source.hpp"
 #include "geometry/lat_lng_bounds.hpp"
+#include "geometry/lat_lng_bounds_zoom.hpp"
 #include "map/camera_position.hpp"
 #include "map/image.hpp"
 #include "style/light.hpp"
@@ -103,7 +104,7 @@ public:
 
     jni::Local<jni::Object<CameraPosition>> getCameraForLatLngBounds(jni::JNIEnv&, const jni::Object<mbgl::android::LatLngBounds>&, double top, double left, double bottom, double right, double bearing, double tilt);
 
-    jni::Local<jni::Object<LatLngBoundsZoom>> getLatLngBoundsZoomFromCamera(jni::JNIEnv&, const jni::Object<mbgl::android::CameraOptions>&);
+    jni::Local<jni::Object<mbgl::android::LatLngBoundsZoom>> getLatLngBoundsZoomFromCamera(jni::JNIEnv&, const jni::Object<CameraPosition>&);
 
     jni::Local<jni::Object<CameraPosition>> getCameraForGeometry(jni::JNIEnv&, const jni::Object<geojson::Geometry>&, double top, double left, double bottom, double right, double bearing, double tilt);
 
